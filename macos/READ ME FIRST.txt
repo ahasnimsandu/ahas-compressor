@@ -22,29 +22,26 @@ are never overwritten. Verify and test extraction before deleting originals.
 The archive does NOT preserve resource forks, extended attributes, Finder
 tags, ACLs, owners, creation dates, or hard-link identity. Symbolic links and
 special files are skipped/reported. No encryption. Not a full backup tool.
-No universal 50 GB -> 50 MB ratio is possible for arbitrary files.
+Compression ratios depend on the input; some files may not shrink.
 
 Quit with Command-Q or close the window. An active job is cancelled only
 after confirmation and cleanup. Logs: ~/Library/Logs/AHAS/app.log
 
 BUILD STATUS
-Apple Silicon arm64, macOS 11+ build target. Official GitHub release artifacts
-are built with Apple's tools on a macOS runner; current automated validation
-is recorded on the repository Actions/Release pages. Earlier Linux-generated
-development artifacts are not the same as those native-built downloads.
+Apple Silicon arm64, macOS 11+ build target. Release packages are built
+with Apple's tools on macOS. Test results and checksums are available
+on the repository Actions and release pages.
 Ad-hoc signatures only: NOT Developer ID signed and NOT Apple notarized.
 Full manual file-dialog/codec coverage, minimum-OS compatibility, and
 Gatekeeper/quarantine behavior still require testing on your own Mac.
 
 If macOS blocks a download, do not disable Gatekeeper globally or assume a
-"damaged" warning is harmless. Check its checksum/signature and use the
-native-built GitHub release instead of earlier cross-built packages.
+"damaged" warning is harmless. Check its checksum and signature against the published release.
 
-SOURCE AND GITHUB
-The separate source ZIP includes README, tests, benchmarks, security policy,
-format documentation, native Mac build/CI/release workflows, runtime license
-information, and Publish to GitHub.command. Upstream: github.com/ahasnimsandu/ahas-compressor. Publishing a separate copy
-requires your GitHub CLI authentication.
+SOURCE AND LICENSES
+Source: https://github.com/ahasnimsandu/ahas-compressor
+The source package includes documentation, tests, benchmarks, native Mac
+build scripts, and license notices.
 
 Show Package Contents > Contents > Resources contains the application source,
 native host, bundled runtime/provenance, documentation, and licenses.

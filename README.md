@@ -2,13 +2,13 @@
 
 ### Space, thoughtfully reclaimed.
 
-**Current native release: [v2.0.1](https://github.com/ahasnimsandu/ahas-compressor/releases/tag/v2.0.1).** Built and launched on an Apple Silicon macOS runner; 61 tests, packaged-app restoration smoke, Apple ad-hoc signature checks, and DMG verification passed. [Actual Mac screenshot](docs/screenshots/native-mac.png).
+**[Download v2.0.1](https://github.com/ahasnimsandu/ahas-compressor/releases/tag/v2.0.1)** · [Mac screenshot](docs/screenshots/native-mac.png)
 
 **Made by Ahas Nimsandu** · Apple Silicon macOS app · MIT-licensed application source
 
 [Repository](https://github.com/ahasnimsandu/ahas-compressor) · [Releases](https://github.com/ahasnimsandu/ahas-compressor/releases) · [Build status](https://github.com/ahasnimsandu/ahas-compressor/actions)
 
-AHAS offers two deliberately separate ways to make files smaller:
+AHAS compresses files locally on your Mac with two modes:
 
 | Mode | What it does | Exact recovery? |
 |---|---|---|
@@ -19,7 +19,7 @@ AHAS offers two deliberately separate ways to make files smaller:
 
 ## Install the Mac app
 
-Use the **native-built [GitHub Release](https://github.com/ahasnimsandu/ahas-compressor/releases/latest)** rather than earlier Linux-generated development downloads.
+Download the DMG or app ZIP from the [latest release](https://github.com/ahasnimsandu/ahas-compressor/releases/latest).
 
 1. Open the Apple Silicon DMG and drag **AHAS.app** into **Applications**, or extract the app ZIP and move **AHAS.app** there.
 2. Eject the DMG and open AHAS from Applications.
@@ -31,9 +31,9 @@ The app bundles its own arm64 Python runtime: **no Python, pip, Node, account, o
 
 If macOS blocks or labels a download “damaged,” do not assume the file is safe or disable security globally. Check its checksum, use the native macOS build workflow, and investigate Apple's `codesign`/Gatekeeper output. A regular **Privacy & Security → Open Anyway** approval may be offered for a trusted unnotarized app, but it does not repair an invalid signature or corrupted disk image.
 
-## What's new — actual compression changes
+## Compression
 
-Version 1 compressed each 4 MiB chunk separately and stored it in SQLite. That incurred a database overhead and limited cross-chunk compression. **AHAS v2 changes the format**, not just the extension:
+Version 1 compressed each 4 MiB chunk separately and stored it in SQLite. That incurred a database overhead and limited cross-chunk compression. The `.ahas` v2 format uses:
 
 - One **solid LZMA2/XZ stream** shares a dictionary across entries.
 - Identical complete files are stored once, regardless of file size. Extraction creates ordinary separate copies.
@@ -58,15 +58,13 @@ Deterministic, selected synthetic tests; all new archives were verified. Balance
 | Zero-filled file | 64 MiB | 36,864 B | **336 B** | 65,372 B |
 | Unique random bytes | 8 MiB | 8,433,664 B | **8,389,480 B** | 8,391,314 B |
 
-These are **not universal performance claims**. Codec settings, container overhead, and workload selection all matter. Random and already-compressed data can still grow slightly; ZIP was substantially faster on random data. This combines established methods rather than inventing a new codec. No claim is made to beat all 7-Zip/Zstandard/backup tools. See [raw results](benchmark-results.json) and `python3 benchmark.py`.
-
-**50 GB → 50 MB?** Only for extremely redundant data. No lossless format can guarantee this for arbitrary inputs. A full 50 GB run has not been tested in this environment.
+Results depend on the input and compression settings. Random and already-compressed files may grow slightly. ZIP was faster on random data in these tests. See [benchmark results](benchmark-results.json) and `python3 benchmark.py`.
 
 ## Choose the right mode
 
 ### Lossless Archive
 
-Use for documents, source code, logs, datasets, duplicate files, or anything whose exact regular-file bytes must be recoverable. Save a new `.ahas` file **outside** selected source folders. Use **Verify**, then test **Extract** into a new folder before deleting originals. Small archives and compressed formats can grow; the app reports that honestly.
+Use for documents, source code, logs, datasets, duplicate files, or anything whose exact regular-file bytes must be recoverable. Save a new `.ahas` file **outside** selected source folders. Use **Verify**, then test **Extract** into a new folder before deleting originals. Small archives and compressed formats can grow; the app displays the resulting size.
 
 - Preserves: regular-file content bytes, directory structure, empty folders/files, basic permission bits, and modification timestamps when the filesystem supports them.
 - Does not preserve: resource forks, extended attributes, Finder tags, ACLs, owners/groups, creation dates, hard-link identity, or APFS clone identity.
@@ -91,11 +89,11 @@ Requires checking the **quality-loss consent** box. Select **Images & video**, *
 - Video input containers: MP4, MOV, M4V. Codec/DRM support depends on `avconvert` and macOS. Output is MOV; tracks, resolution, quality, metadata, HDR, and audio can change. Only supported presets reported by that Mac are used. Audio-only files and MKV are not supported by this release.
 - Quality/resolution presets are not output-size targets and do not guarantee a reduction.
 - New files go in a **new output folder outside sources**. If conversion fails or is not smaller, the output folder receives an unchanged original copy and a report explains why. Source files are never modified.
-- The mode uses `/usr/bin/sips` and `/usr/bin/avconvert`, not bundled ffmpeg or external downloads. It does not work in a Linux hosted preview.
+- The mode uses `/usr/bin/sips` and `/usr/bin/avconvert`, not bundled ffmpeg or external downloads. Media optimization is available on macOS only.
 
 ## Privacy, safety, and resources
 
-The app binds a random **127.0.0.1-only** port. Its self-contained UI has no CDN assets, telemetry, account, or upload service. API calls use a per-process random token plus Host/Origin checks; it is not a multi-user authenticated service. Anyone with access to the same desktop may be able to use it. `--preview` is only for a hosted sandbox demo and intentionally exposes a preview port; do not use that flag on your Mac.
+The app binds a random **127.0.0.1-only** port. Its self-contained UI has no CDN assets, telemetry, account, or upload service. API calls use a per-process random token plus Host/Origin checks; it is not a multi-user authenticated service. Anyone with access to the same desktop may be able to use it. `--preview` enables network access for development; do not use it for normal desktop operation.
 
 Originals are not overwritten. Existing archive/extraction/media outputs are not overwritten. Controlled cancellation/failure removes incomplete output; forced termination, power loss, or disk errors can leave partial files/folders. Do not treat active/changing files as a consistent snapshot. Extraction defaults to a 1,024 GiB logical-size cap and conservatively checks free space; change the cap if needed. Archive output publication needs a local filesystem with hard-link support, e.g. APFS; FAT/exFAT and cloud/network targets are not supported for new archives.
 
@@ -131,8 +129,6 @@ bash macos/build-on-mac.sh
 
 The Mac build downloads a pinned, checksum-verified runtime, installs build-only Pillow/ds_store in a temporary venv, produces an ad-hoc app/DMG/ZIP, runs Apple's code-signature checks, and verifies the DMG. This does not grant Developer ID trust or notarization. Check the repository Actions page for the current native-Mac release-build result; a passing build still does not replace manual GUI testing. See [build notes](macos/BUILD-NOTES.md), [format](docs/FORMAT.md), [validation](VALIDATION.md), and [security policy](SECURITY.md).
 
-## Publish to GitHub
+## License
 
-The source folder is repository-ready, with CI, release packaging, tests, documentation, and a license. The public upstream repository is **ahasnimsandu/ahas-compressor**. To publish a separate fork/copy under your account, run `Publish to GitHub.command` on your Mac to authenticate using GitHub CLI and choose visibility. It can optionally start a native Mac release build. Details: [GitHub publishing guide](docs/GITHUB.md).
-
-Made by **Ahas Nimsandu**. Application source: MIT. Bundled runtime components keep their own licenses; provenance and license documents are under `macos/` and inside the app.
+Made by **Ahas Nimsandu**. Application source is licensed under the [MIT License](LICENSE). Bundled runtime components retain their own licenses; see `macos/runtime-licenses/` and the notices inside the app.

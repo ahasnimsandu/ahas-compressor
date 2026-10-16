@@ -13,7 +13,7 @@ Apple Silicon build target: macOS 11+. Minimum-OS compatibility and native UI re
 
 Lossless compression cannot guarantee a reduction for arbitrary input. Already-compressed files may grow slightly. Media optimization is irreversible and may change resolution, quality, metadata, color, transparency, animation, HDR, and audio/video tracks. Support depends on macOS codecs; audio-only files are not handled.
 
-The published v2.0.1 DMG and ZIP are native Apple Silicon macOS builds, not the earlier Linux-generated development packages. [Final native build and smoke check passed](https://github.com/ahasnimsandu/ahas-compressor/actions/runs/38961746861); the actual Mac screenshot was visually reviewed and confirms AHAS app/menu identity. This does not imply Apple certification or notarization. Always test restoration and keep independent backups.
+The DMG and ZIP are built on Apple Silicon macOS. [Release build and archive/restore tests](https://github.com/ahasnimsandu/ahas-compressor/actions/runs/38961746861) passed. Keep independent backups and test restoration before deleting originals.
 
 ## Native Mac validation
 

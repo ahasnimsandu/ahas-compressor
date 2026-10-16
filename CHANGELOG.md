@@ -14,8 +14,7 @@
 - Original files untouched; converted files that grow or fail are replaced with unchanged output copies and reported.
 - Legacy `.cla` extraction/verification retained.
 - Archive, media-control-flow, HTTP, and browser tests; synthetic comparisons against legacy/ZIP.
-- Native-macOS build script, CI/release workflows, GitHub publishing guide and guided publisher.
-- Public repository published with owner-approved GitHub CLI device authentication: ahasnimsandu/ahas-compressor. A publishing helper is also included for forks/copies.
+- Native macOS build script and CI/release workflows.
 
 ## 1.1.0
 
