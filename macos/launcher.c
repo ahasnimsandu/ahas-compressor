@@ -50,6 +50,8 @@ int main(void) {
     void *handle=dlopen(library,RTLD_NOW|RTLD_GLOBAL);
     if (!handle) return failure(dlerror());
 
+    void (*preinit)(PyPreConfig *)=dlsym(handle,"PyPreConfig_InitIsolatedConfig");
+    PyStatus (*preinitialize)(const PyPreConfig *)=dlsym(handle,"Py_PreInitialize");
     void (*init)(PyConfig *)=dlsym(handle,"PyConfig_InitIsolatedConfig");
     PyStatus (*set_string)(PyConfig *,wchar_t **,const char *)=dlsym(handle,"PyConfig_SetBytesString");
     PyStatus (*set_argv)(PyConfig *,Py_ssize_t,char *const *)=dlsym(handle,"PyConfig_SetBytesArgv");
@@ -57,15 +59,20 @@ int main(void) {
     void (*clear)(PyConfig *)=dlsym(handle,"PyConfig_Clear");
     int (*exception)(PyStatus)=dlsym(handle,"PyStatus_Exception");
     int (*run_main)(void)=dlsym(handle,"Py_RunMain");
-    if (!init||!set_string||!set_argv||!initialize||!clear||!exception||!run_main)
+    if (!preinit||!preinitialize||!init||!set_string||!set_argv||!initialize||!clear||!exception||!run_main)
         return failure("Bundled runtime is missing a required embedding API.");
 
+    PyPreConfig preconfig;
+    preinit(&preconfig);
+    preconfig.utf8_mode=1;
+    PyStatus status=preinitialize(&preconfig);
+    if (exception(status)) return failure(status.err_msg ? status.err_msg : "Cannot initialize UTF-8 runtime.");
     PyConfig config;
     init(&config);
     config.parse_argv=0;
     config.write_bytecode=0;
     config.install_signal_handlers=0;
-    PyStatus status=set_string(&config,&config.home,python_home);
+    status=set_string(&config,&config.home,python_home);
     if (!exception(status)) status=set_string(&config,&config.program_name,executable);
     if (!exception(status)) status=set_string(&config,&config.run_filename,script);
     char *args[]={script};

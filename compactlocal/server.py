@@ -110,7 +110,7 @@ class Handler(BaseHTTPRequestHandler):
         if self.path == '/':
             if not PREVIEW and self.headers.get('Sec-Fetch-Site') == 'cross-site':
                 return self.send(403,{'error':'Open the app from its launcher.'})
-            html = (ROOT/'index.html').read_text().replace('__TOKEN__',TOKEN).replace('__ENV__','Hosted preview · files are in the demo workspace' if PREVIEW else 'Local on your Mac · no uploads')
+            html = (ROOT/'index.html').read_text(encoding='utf-8').replace('__TOKEN__',TOKEN).replace('__ENV__','Hosted preview · files are in the demo workspace' if PREVIEW else 'Local on your Mac · no uploads')
             return self.send(200,html.encode(),'text/html; charset=utf-8')
         if self.path == '/api/status' and self.authorized():
             with LOCK:

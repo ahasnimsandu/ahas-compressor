@@ -26,7 +26,7 @@ def main():
     with tempfile.TemporaryDirectory(prefix='ahas-native-smoke-') as tmp:
         root=Path(tmp);source=root/'Source';source.mkdir()
         content=b'AHAS packaged native runtime round-trip\n'*10000
-        (source/'a.txt').write_bytes(content);(source/'b.txt').write_bytes(content)
+        (source/'a.txt').write_bytes(content);(source/'b.txt').write_bytes(content);(source/'café 🌱.txt').write_bytes(content)
         p=subprocess.Popen([str(app/'Contents/MacOS/AHAS')],start_new_session=True)
         try:
             deadline=time.monotonic()+45;url=None
@@ -63,6 +63,7 @@ def main():
             job(dict(operation='extract',archive=str(archive),output=str(dest)))
             assert (dest/'Source/a.txt').read_bytes()==content
             assert (dest/'Source/b.txt').read_bytes()==content
+            assert (dest/'Source/café 🌱.txt').read_bytes()==content
             if screenshot:
                 screenshot.parent.mkdir(parents=True,exist_ok=True)
                 capture=subprocess.run(['/usr/sbin/screencapture','-x',str(screenshot)],capture_output=True,text=True,timeout=15)
