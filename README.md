@@ -17,6 +17,8 @@ AHAS offers two deliberately separate ways to make files smaller:
 
 ## Install the Mac app
 
+Use the **native-built [GitHub Release](https://github.com/ahasnimsandu/ahas-compressor/releases/latest)** rather than earlier Linux-generated development downloads.
+
 1. Open the Apple Silicon DMG and drag **AHAS.app** into **Applications**, or extract the app ZIP and move **AHAS.app** there.
 2. Eject the DMG and open AHAS from Applications.
 3. Select Lossless Archive or Media Optimizer. Originals are never overwritten.

@@ -50,3 +50,9 @@ The owner authorized publication to https://github.com/ahasnimsandu/ahas-compres
 - Cross-platform CI succeeded on Linux/macOS with Python 3.11/3.13, plus Chromium browser tests: https://github.com/ahasnimsandu/ahas-compressor/actions/runs/38960175273
 
 These later native-run results supersede the initial Linux-only limitations for the specific checks listed above. Native file-dialog interactions, full GUI automation, actual video transcoding, macOS 11 compatibility, and Gatekeeper/quarantine approval are not claimed tested by this build run. A separate packaged-app launch/backend smoke workflow is provided; consult its result before treating that extra check as passed.
+
+The published 2.0.0 app also passed a separate actual Apple Silicon launch/backend smoke run:
+https://github.com/ahasnimsandu/ahas-compressor/actions/runs/38961034545
+The app stayed running, its branded interface was captured and visually reviewed, and its bundled engine created/verified/extracted a .ahas archive with byte-identical restored files. An initial smoke harness run used hostname-resolved lsof output and could not discover the loopback socket; this harness was corrected with `-nP`, after which the unchanged packaged app passed. This was not an app-code failure.
+
+The 2.0.1 patch embeds CPython rather than exec-replacing the native launcher, preserving AHAS's NSBundle/menu identity. Its release workflow adds the packaged launch/backend smoke before publication on an arm64 runner. Consult that run's actual result rather than assuming it passed from this description.

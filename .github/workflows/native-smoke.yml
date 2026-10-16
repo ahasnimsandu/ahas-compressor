@@ -1,6 +1,11 @@
 name: Native packaged app smoke
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: Published release tag to test
+        required: true
+        default: v2.0.1
 permissions:
   contents: read
 jobs:
@@ -14,12 +19,14 @@ jobs:
       - name: Download published release and verify checksums
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag }}
         run: |
           mkdir -p "$RUNNER_TEMP/ahas-published"
-          gh release download v2.0.0 --repo "$GITHUB_REPOSITORY" --dir "$RUNNER_TEMP/ahas-published" --pattern 'AHAS-2.0-AppleSilicon*' --pattern SHA256SUMS.txt
+          gh release download "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --dir "$RUNNER_TEMP/ahas-published" --pattern 'AHAS-*-AppleSilicon*' --pattern SHA256SUMS.txt
           cd "$RUNNER_TEMP/ahas-published"
           shasum -a 256 -c SHA256SUMS.txt
-          ditto -x -k AHAS-2.0-AppleSilicon-App.zip extracted
+          app_zip=(AHAS-*-AppleSilicon-App.zip)
+          ditto -x -k "${app_zip[0]}" extracted
           codesign --verify --deep --strict --verbose=2 extracted/AHAS.app
       - name: Launch packaged app and test its bundled archive engine
         run: python macos/smoke_installed_app.py "$RUNNER_TEMP/ahas-published/extracted/AHAS.app" "$RUNNER_TEMP/ahas-published/native-screenshot.png"

@@ -11,7 +11,7 @@ The owner authorized publication through official GitHub CLI device sign-in. Sou
 3. Inspect and double-click `Publish to GitHub.command`, or run `bash "Publish to GitHub.command"` from this folder.
 4. The script uses `gh auth login` to authenticate directly with GitHub. Never paste a password or token into a chat.
 5. Choose a repository name and visibility. **Private is the default.** It refuses to overwrite an existing repository or reuse an unexpected origin.
-6. It commits and pushes the source. It can optionally request the native Mac build and create Release `v2.0.0`. Actions must be enabled; private-repository builds can use paid Actions minutes depending on your account.
+6. It commits and pushes the source. It can optionally request the native Mac build and create Release `v2.0.1`. Actions must be enabled; private-repository builds can use paid Actions minutes depending on your account.
 
 ## Manual commands
 
@@ -24,7 +24,7 @@ git commit -m "AHAS 2.0"
 gh auth login
 gh repo create ahas-compressor --private --source . --remote origin --push
 # Use --public instead only if you want a public repository.
-gh workflow run macos-release.yml --ref main -f tag=v2.0.0
+gh workflow run macos-release.yml --ref main -f tag=v2.0.1
 gh run list
 ```
 

@@ -24,9 +24,9 @@ if ! git diff --cached --quiet; then
 fi
 echo "Creating $VISIBILITY repository $LOGIN/$REPO and pushing the source…"
 gh repo create "$LOGIN/$REPO" --"$VISIBILITY" --source . --remote origin --push
-read -r -p 'Start the macOS build and create GitHub Release v2.0.0? [y/N]: ' BUILD
+read -r -p 'Start the macOS build and create GitHub Release v2.0.1? [y/N]: ' BUILD
 if [ "$BUILD" = y ] || [ "$BUILD" = Y ]; then
- gh workflow run macos-release.yml --ref main -f tag=v2.0.0
+ gh workflow run macos-release.yml --ref main -f tag=v2.0.1
  echo 'Build requested. GitHub Actions must be enabled. This can use your account Actions minutes.'
 fi
 gh repo view --web

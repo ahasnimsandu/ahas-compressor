@@ -11,7 +11,7 @@ import time
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE / 'app'))
-from compactlocal import server
+from compactlocal import server, __version__
 
 ID = C.c_void_p
 BOOL = C.c_bool
@@ -143,7 +143,7 @@ def main():
             void(app, 'replyToApplicationShouldTerminate:', (BOOL,), (True,))
 
     def about(_self, _cmd, _sender):
-        alert('AHAS 2.0', 'Made by Ahas Nimsandu\n\nSolid .ahas archives, whole-file deduplication, extraction, verification, and a separate lossy Media Optimizer.\n\nRuns locally on your Mac. No uploads.\n\nNo universal 1,000× compression guarantee. macOS extended metadata and resource forks are not preserved.\n\nAd-hoc-signed experimental Apple Silicon build; not notarized. Test restoration before deleting originals.')
+        alert('AHAS '+__version__, 'Made by Ahas Nimsandu\n\nSolid .ahas archives, whole-file deduplication, extraction, verification, and a separate lossy Media Optimizer.\n\nRuns locally on your Mac. No uploads.\n\nNo universal 1,000× compression guarantee. macOS extended metadata and resource forks are not preserved.\n\nAd-hoc-signed experimental Apple Silicon build; not notarized. Test restoration before deleting originals.')
 
     def will_terminate(_self, _cmd, _notification):
         server.CANCEL.set()

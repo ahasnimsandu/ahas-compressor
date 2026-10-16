@@ -12,15 +12,15 @@ These are ad-hoc signatures, not Developer ID trust or notarization. For a trust
 
 - `RUNTIME-PROVENANCE.json`: exact upstream CPython 3.13.16 arm64 archive, release digest, and source URL. The builder checks that SHA256 before extraction.
 - `runtime-licenses/`: upstream license collection. Optional components listed there are not necessarily all used.
-- `launcher.c`: tiny native libSystem launcher into the bundled shell script, no Terminal window.
-- `launch.sh`: starts isolated bundled Python and logs outside the read-only bundle.
+- `launcher.c`: native launcher that embeds bundled CPython using its isolated PyConfig API. It preserves the AHAS NSBundle/menu identity; no Terminal window or interpreter exec replacement.
+- `launch.sh`: optional source/debug launcher; packaged builds embed Python directly and log outside the read-only bundle.
 - `native_host.py`: AppKit/WebKit host, native menus/author About, local server, cancellation/quit lifecycle.
 - `assemble_bundle.py`: build-only helper. `work/python/` and `work/AHAS-launcher` must exist. It stages `work/stage/AHAS.app`, records/removes symlinks in `work/symlinks.json` for the Linux importer, and creates the icon/Finder layout. Restore those links before signing or Mac packaging.
 - `verify_bundle.py`: independent resource and Mach-O page-hash structural checks, not Apple's Gatekeeper/trust validation.
 
 ## Linux development artifact
 
-The chat-produced DMG is cross-built using clang/ld64.lld, a public libSystem stub, `rcodesign` recursive ad-hoc signing, `mkfs.hfsplus`, and a `planetbeing/libdmg-hfsplus` importer/UDIF writer (commit `7ac55ec64c96f7800d9818ce64c79670e7f02b67`, optional legacy OpenSSL FileVault disabled, HFS partition label corrected from hardcoded HFSX to HFS). Independent `dmg2img` decoding and filesystem checks are used afterward. Build tools are not runtime dependencies and are not redistributed in the app.
+Earlier development DMGs were cross-built using clang/ld64.lld, a public libSystem stub, `rcodesign` recursive ad-hoc signing, `mkfs.hfsplus`, and a `planetbeing/libdmg-hfsplus` importer/UDIF writer (commit `7ac55ec64c96f7800d9818ce64c79670e7f02b67`, optional legacy OpenSSL FileVault disabled, HFS partition label corrected from hardcoded HFSX to HFS). Independent `dmg2img` decoding and filesystem checks are used afterward. Build tools are not runtime dependencies and are not redistributed in the app.
 
 A standalone app ZIP is also provided to avoid the disk-image step. It preserves executable bits and nine runtime symlinks. This does not bypass or repair a signing/security issue.
 

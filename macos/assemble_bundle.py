@@ -8,10 +8,12 @@ import os
 import plistlib
 import shutil
 import struct
+import re
 import sys
 from PIL import Image, ImageDraw
 
 SOURCE = Path(__file__).resolve().parent.parent
+APP_VERSION = re.search(r"__version__\s*=\s*['\"]([^'\"]+)['\"]", (SOURCE/'compactlocal/__init__.py').read_text()).group(1)
 WORK = Path(sys.argv[1]).resolve()
 STAGE = WORK/'stage'
 if STAGE.exists():
@@ -37,7 +39,7 @@ info = {
  'CFBundleDevelopmentRegion':'en', 'CFBundleDisplayName':'AHAS',
  'CFBundleName':'AHAS', 'CFBundleExecutable':'AHAS',
  'CFBundleIdentifier':'app.ahasnimsandu.ahas', 'CFBundlePackageType':'APPL',
- 'CFBundleShortVersionString':'2.0.0', 'CFBundleVersion':'3',
+ 'CFBundleShortVersionString':APP_VERSION, 'CFBundleVersion':APP_VERSION,
  'CFBundleIconFile':'AHAS.icns', 'LSMinimumSystemVersion':'11.0',
  'LSArchitecturePriority':['arm64'], 'LSRequiresNativeExecution':True,
  'NSHighResolutionCapable':True, 'NSPrincipalClass':'NSApplication',
