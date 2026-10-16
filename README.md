@@ -1,4 +1,4 @@
-# AHAS 2.0
+# AHAS 2.0.1
 
 ### Space, thoughtfully reclaimed.
 
@@ -27,7 +27,7 @@ Use the **native-built [GitHub Release](https://github.com/ahasnimsandu/ahas-com
 
 The app bundles its own arm64 Python runtime: **no Python, pip, Node, account, or internet connection is needed to run it**. Its interface is hosted in a native AppKit/WebKit window, not an external browser. Logs: `~/Library/Logs/AHAS/app.log`.
 
-**Build target:** Apple Silicon, macOS 11+. **Release status:** experimental, ad-hoc signed only; not Developer ID signed or notarized. Linux-generated artifacts have not been executed on a real Mac here. A native macOS build workflow is included and should be run before a public release; automated packaging does not replace GUI/minimum-OS testing. The native GitHub build has now passed all 61 tests, Apple code-signature checks, runtime imports, and DMG verification; full GUI/file-dialog and minimum-OS testing remain separate. See [validation](VALIDATION.md).
+**Build target:** Apple Silicon, macOS 11+. **Release status:** experimental, ad-hoc signed only; **not Developer ID signed or notarized**. The published v2.0.1 DMG and ZIP were built and launched on an actual Apple Silicon macOS runner. All 61 tests, Apple ad-hoc code-signature checks, bundled-runtime imports, DMG verification, and a packaged-app archive/restore round trip passed. Full GUI/file-dialog, all-codec video, minimum-OS, and end-user Gatekeeper testing remain separate. See [validation](VALIDATION.md).
 
 If macOS blocks or labels a download “damaged,” do not assume the file is safe or disable security globally. Check its checksum, use the native macOS build workflow, and investigate Apple's `codesign`/Gatekeeper output. A regular **Privacy & Security → Open Anyway** approval may be offered for a trusted unnotarized app, but it does not repair an invalid signature or corrupted disk image.
 
