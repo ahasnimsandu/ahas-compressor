@@ -143,7 +143,7 @@ def main():
             void(app, 'replyToApplicationShouldTerminate:', (BOOL,), (True,))
 
     def about(_self, _cmd, _sender):
-        alert('AHAS '+__version__, 'Made by Ahas Nimsandu\n\nSolid .ahas archives, whole-file deduplication, extraction, verification, and a separate lossy Media Optimizer.\n\nRuns locally on your Mac. No uploads.\n\nNo universal 1,000× compression guarantee. macOS extended metadata and resource forks are not preserved.\n\nAd-hoc-signed experimental Apple Silicon build; not notarized. Test restoration before deleting originals.')
+        alert('AHAS '+__version__, 'Made by Ahas Nimsandu\n\nSolid .ahas archives, whole-file deduplication, extraction, verification, and a separate lossy Media Optimizer.\n\nRuns locally on your Mac. No uploads.\n\nCompression depends on file contents. macOS extended metadata and resource forks are not preserved.\n\nAd-hoc-signed experimental Apple Silicon build; not notarized. Test restoration before deleting originals.')
 
     def will_terminate(_self, _cmd, _notification):
         server.CANCEL.set()

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.2
+
+- Revised README, installation notes, developer documentation, and in-app copy.
+- Removed the repository-publishing helper and guide.
+- Archive format and compression behavior are unchanged.
+
 ## 2.0.1
 
 - Embed the bundled interpreter in the native launcher, preserving the AHAS app/menu/NSBundle identity instead of replacing the process with the Python executable.

@@ -1,6 +1,6 @@
 {
   "name": "ahas-compressor-dev-tests",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "private": true,
   "description": "Optional browser tests only; AHAS has no Node runtime dependency.",
   "scripts": {"test:browser": "node tests/browser_smoke.cjs"},

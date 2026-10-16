@@ -1,8 +1,8 @@
-# AHAS 2.0.1
+# AHAS 2.0.2
 
 ### Space, thoughtfully reclaimed.
 
-**[Download v2.0.1](https://github.com/ahasnimsandu/ahas-compressor/releases/tag/v2.0.1)** · [Mac screenshot](docs/screenshots/native-mac.png)
+**[Download the Mac app](https://github.com/ahasnimsandu/ahas-compressor/releases/latest)** · [Mac screenshot](docs/screenshots/native-mac.png)
 
 **Made by Ahas Nimsandu** · Apple Silicon macOS app · MIT-licensed application source
 

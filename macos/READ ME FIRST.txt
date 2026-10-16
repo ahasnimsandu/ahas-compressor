@@ -1,4 +1,4 @@
-AHAS 2.0.1 — Apple Silicon Edition
+AHAS 2.0.2 — Apple Silicon Edition
 Made by Ahas Nimsandu
 
 INSTALL
