@@ -1,0 +1,31 @@
+name: Native packaged app smoke
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-smoke:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Download published release and verify checksums
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/ahas-published"
+          gh release download v2.0.0 --repo "$GITHUB_REPOSITORY" --dir "$RUNNER_TEMP/ahas-published" --pattern 'AHAS-2.0-AppleSilicon*' --pattern SHA256SUMS.txt
+          cd "$RUNNER_TEMP/ahas-published"
+          shasum -a 256 -c SHA256SUMS.txt
+          ditto -x -k AHAS-2.0-AppleSilicon-App.zip extracted
+          codesign --verify --deep --strict --verbose=2 extracted/AHAS.app
+      - name: Launch packaged app and test its bundled archive engine
+        run: python macos/smoke_installed_app.py "$RUNNER_TEMP/ahas-published/extracted/AHAS.app" "$RUNNER_TEMP/ahas-published/native-screenshot.png"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: AHAS-native-screenshot
+          path: ${{ runner.temp }}/ahas-published/native-screenshot.png
+          if-no-files-found: ignore

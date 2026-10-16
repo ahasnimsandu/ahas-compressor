@@ -36,3 +36,17 @@ Every AHAS test archive was fully verified. Media optimization has no measured q
 ## Packaging checks
 
 See `macos/BUILD-RECEIPT.json` for the exact delivered DMG/ZIP hashes and structural checks. The native-Mac build script additionally invokes Apple codesign/hdiutil and real-Mac media tests when it is actually run. This Linux report does not claim those future checks passed.
+
+## Native GitHub macOS evidence (subsequently completed)
+
+The owner authorized publication to https://github.com/ahasnimsandu/ahas-compressor through GitHub CLI device sign-in.
+
+- Native release run succeeded: https://github.com/ahasnimsandu/ahas-compressor/actions/runs/38960178824
+- Built on an actual GitHub macOS runner; the bundled **arm64** Python runtime was executed and its ctypes/lzma/sqlite3 imports passed.
+- **All 61 tests passed on macOS**, including actual `sips` image conversion and `avconvert` preset enumeration. This is not a test of every video codec or an actual video transcode.
+- Apple's `codesign --verify --deep --strict` reported the app valid on disk and satisfying its designated requirement. This validates the ad-hoc signature, not Developer ID trust or notarization.
+- Apple's `hdiutil verify` verified the native-built DMG and partition checksums.
+- Release assets: https://github.com/ahasnimsandu/ahas-compressor/releases/tag/v2.0.0
+- Cross-platform CI succeeded on Linux/macOS with Python 3.11/3.13, plus Chromium browser tests: https://github.com/ahasnimsandu/ahas-compressor/actions/runs/38960175273
+
+These later native-run results supersede the initial Linux-only limitations for the specific checks listed above. Native file-dialog interactions, full GUI automation, actual video transcoding, macOS 11 compatibility, and Gatekeeper/quarantine approval are not claimed tested by this build run. A separate packaged-app launch/backend smoke workflow is provided; consult its result before treating that extra check as passed.
