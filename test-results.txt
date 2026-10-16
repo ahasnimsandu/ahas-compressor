@@ -1,0 +1,66 @@
+test_bit_corruption (test_ahas.AhasTests.test_bit_corruption) ... ok
+test_cancel_compress (test_ahas.AhasTests.test_cancel_compress) ... ok
+test_cancel_restore (test_ahas.AhasTests.test_cancel_restore) ... ok
+test_crafted_hash_mismatch (test_ahas.AhasTests.test_crafted_hash_mismatch) ... ok
+test_crafted_invalid_duplicate (test_ahas.AhasTests.test_crafted_invalid_duplicate) ... ok
+test_crafted_oversized_data_record (test_ahas.AhasTests.test_crafted_oversized_data_record) ... ok
+test_crafted_traversal (test_ahas.AhasTests.test_crafted_traversal) ... ok
+test_empty_file_duplicates (test_ahas.AhasTests.test_empty_file_duplicates) ... ok
+test_empty_folder (test_ahas.AhasTests.test_empty_folder) ... ok
+test_exact_file_deduplication (test_ahas.AhasTests.test_exact_file_deduplication) ... ok
+test_expansion_limit (test_ahas.AhasTests.test_expansion_limit) ... ok
+test_extension (test_ahas.AhasTests.test_extension) ... ok
+test_invalid_level (test_ahas.AhasTests.test_invalid_level) ... ok
+test_legacy_read (test_ahas.AhasTests.test_legacy_read) ... ok
+test_lower_overhead_than_legacy (test_ahas.AhasTests.test_lower_overhead_than_legacy) ... ok
+test_nested_output_rejected (test_ahas.AhasTests.test_nested_output_rejected) ... ok
+test_no_overwrite (test_ahas.AhasTests.test_no_overwrite) ... ok
+test_oversized_json (test_ahas.AhasTests.test_oversized_json) ... ok
+test_random_growth_reported (test_ahas.AhasTests.test_random_growth_reported) ... ok
+test_roundtrip (test_ahas.AhasTests.test_roundtrip) ... ok
+test_source_mutation (test_ahas.AhasTests.test_source_mutation) ... ok
+test_trailing_stream_data (test_ahas.AhasTests.test_trailing_stream_data) ... ok
+test_truncated (test_ahas.AhasTests.test_truncated) ... ok
+test_unsafe_paths (test_ahas.AhasTests.test_unsafe_paths) ... ok
+test_zero_ratio (test_ahas.AhasTests.test_zero_ratio) ... ok
+test_bad_format (test_archive.ArchiveTests.test_bad_format) ... ok
+test_cancel_extract_cleans_output (test_archive.ArchiveTests.test_cancel_extract_cleans_output) ... ok
+test_cancellation_cleans_output (test_archive.ArchiveTests.test_cancellation_cleans_output) ... ok
+test_corrupt_checksum_rejected_and_cleaned (test_archive.ArchiveTests.test_corrupt_checksum_rejected_and_cleaned) ... ok
+test_duplicate_chunk (test_archive.ArchiveTests.test_duplicate_chunk) ... ok
+test_empty_directory (test_archive.ArchiveTests.test_empty_directory) ... ok
+test_expansion_limit (test_archive.ArchiveTests.test_expansion_limit) ... ok
+test_incomplete_rejected (test_archive.ArchiveTests.test_incomplete_rejected) ... ok
+test_missing_parent_rejected (test_archive.ArchiveTests.test_missing_parent_rejected) ... ok
+test_no_overwrite (test_archive.ArchiveTests.test_no_overwrite) ... ok
+test_normalized_case_collision (test_archive.ArchiveTests.test_normalized_case_collision) ... ok
+test_output_inside_source_rejected (test_archive.ArchiveTests.test_output_inside_source_rejected) ... ok
+test_oversized_span_rejected (test_archive.ArchiveTests.test_oversized_span_rejected) ... ok
+test_path_traversal_rejected (test_archive.ArchiveTests.test_path_traversal_rejected) ... ok
+test_roundtrip_and_verify (test_archive.ArchiveTests.test_roundtrip_and_verify) ... ok
+test_source_mutation_rejected (test_archive.ArchiveTests.test_source_mutation_rejected) ... ok
+test_symlink_skipped (test_archive.ArchiveTests.test_symlink_skipped) ... ok
+test_zero_file_compresses_over_1000x (test_archive.ArchiveTests.test_zero_file_compresses_over_1000x) ... ok
+test_cancel_removes_output (test_media.MediaTests.test_cancel_removes_output) ... ok
+test_failed_conversion_keeps_original (test_media.MediaTests.test_failed_conversion_keeps_original) ... ok
+test_growing_conversion_is_discarded (test_media.MediaTests.test_growing_conversion_is_discarded) ... ok
+test_name_collisions_do_not_overwrite (test_media.MediaTests.test_name_collisions_do_not_overwrite) ... ok
+test_nested_output (test_media.MediaTests.test_nested_output) ... ok
+test_no_overwrite (test_media.MediaTests.test_no_overwrite) ... ok
+test_non_macos_error (test_media.MediaTests.test_non_macos_error) ... ok
+test_real_sips_compression (test_media.MediaTests.test_real_sips_compression) ... skipped 'Real macOS system-tool test'
+test_real_video_preset_available (test_media.MediaTests.test_real_video_preset_available) ... skipped 'Real macOS preset enumeration'
+test_smaller_copy_original_unchanged (test_media.MediaTests.test_smaller_copy_original_unchanged) ... ok
+test_unsupported_media (test_media.MediaTests.test_unsupported_media) ... ok
+test_video_arguments_and_profile (test_media.MediaTests.test_video_arguments_and_profile) ... ok
+test_bad_host_rejected (test_server.ServerTests.test_bad_host_rejected) ... ok
+test_cross_origin_rejected (test_server.ServerTests.test_cross_origin_rejected) ... ok
+test_html_has_no_external_assets (test_server.ServerTests.test_html_has_no_external_assets) ... ok
+test_http_compress_verify_extract (test_server.ServerTests.test_http_compress_verify_extract) ... ok
+test_media_requires_explicit_consent (test_server.ServerTests.test_media_requires_explicit_consent) ... ok
+test_no_token_rejected (test_server.ServerTests.test_no_token_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 61 tests in 3.906s
+
+OK (skipped=2)

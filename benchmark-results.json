@@ -1,0 +1,79 @@
+{
+  "python": "3.13.16",
+  "platform": "Linux-6.1.158+-x86_64-with-glibc2.41",
+  "note": "Selected synthetic cases. Codec/preset/container differences all contribute. AHAS fingerprints files before packing; this cost is included. No media-quality comparison and no claim to beat all compressors.",
+  "results": [
+    {
+      "case": "zero-filled",
+      "original_bytes": 67108864,
+      "ahas_v2_bytes": 336,
+      "legacy_cla_bytes": 36864,
+      "zip_deflate6_bytes": 65372,
+      "ahas_seconds": 0.3935,
+      "legacy_seconds": 0.2644,
+      "zip_seconds": 0.2896,
+      "verify_seconds": 0.098,
+      "verified": true
+    },
+    {
+      "case": "duplicate-binaries",
+      "original_bytes": 16777216,
+      "ahas_v2_bytes": 1049388,
+      "legacy_cla_bytes": 1085440,
+      "zip_deflate6_bytes": 16784534,
+      "ahas_seconds": 0.3127,
+      "legacy_seconds": 0.3259,
+      "zip_seconds": 0.4343,
+      "verify_seconds": 0.0047,
+      "verified": true
+    },
+    {
+      "case": "unique-random",
+      "original_bytes": 8388608,
+      "ahas_v2_bytes": 8389480,
+      "legacy_cla_bytes": 8433664,
+      "zip_deflate6_bytes": 8391314,
+      "ahas_seconds": 3.1671,
+      "legacy_seconds": 2.5628,
+      "zip_seconds": 0.213,
+      "verify_seconds": 0.0243,
+      "verified": true
+    },
+    {
+      "case": "repetitive-text",
+      "original_bytes": 6300000,
+      "ahas_v2_bytes": 1384,
+      "legacy_cla_bytes": 36864,
+      "zip_deflate6_bytes": 18554,
+      "ahas_seconds": 0.1458,
+      "legacy_seconds": 0.0588,
+      "zip_seconds": 0.0273,
+      "verify_seconds": 0.0248,
+      "verified": true
+    },
+    {
+      "case": "already-compressed",
+      "original_bytes": 4195702,
+      "ahas_v2_bytes": 4196380,
+      "legacy_cla_bytes": 4235264,
+      "zip_deflate6_bytes": 4197138,
+      "ahas_seconds": 1.2378,
+      "legacy_seconds": 1.4359,
+      "zip_seconds": 0.1025,
+      "verify_seconds": 0.0192,
+      "verified": true
+    },
+    {
+      "case": "many-small-text-files",
+      "original_bytes": 301840,
+      "ahas_v2_bytes": 12036,
+      "legacy_cla_bytes": 98304,
+      "zip_deflate6_bytes": 32612,
+      "ahas_seconds": 0.0304,
+      "legacy_seconds": 0.076,
+      "zip_seconds": 0.0133,
+      "verify_seconds": 0.0054,
+      "verified": true
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ahas-compressor"
+version = "2.0.0"
+description = "Solid .ahas lossless archives and an explicit lossy media optimizer for macOS"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+authors = [{name = "Ahas Nimsandu"}]
+dependencies = []
+
+[project.scripts]
+ahas = "compactlocal.__main__:main"
+
+[tool.setuptools]
+packages = ["compactlocal"]
+
+[tool.setuptools.package-data]
+compactlocal = ["index.html"]
