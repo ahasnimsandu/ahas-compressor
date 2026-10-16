@@ -56,3 +56,14 @@ https://github.com/ahasnimsandu/ahas-compressor/actions/runs/38961034545
 The app stayed running, its branded interface was captured and visually reviewed, and its bundled engine created/verified/extracted a .ahas archive with byte-identical restored files. An initial smoke harness run used hostname-resolved lsof output and could not discover the loopback socket; this harness was corrected with `-nP`, after which the unchanged packaged app passed. This was not an app-code failure.
 
 The 2.0.1 patch embeds CPython rather than exec-replacing the native launcher, preserving AHAS's NSBundle/menu identity. Its release workflow adds the packaged launch/backend smoke before publication on an arm64 runner. Consult that run's actual result rather than assuming it passed from this description.
+
+## Final 2.0.1 native release — passed
+
+https://github.com/ahasnimsandu/ahas-compressor/actions/runs/38961746861
+
+The 2.0.1 release was built with Apple's tools on an actual Apple Silicon macOS runner and **all 61 tests passed**. Strict ad-hoc code-signature checks and hdiutil DMG verification passed. The embedded-runtime app was launched before publication; its .ahas creation/verification/extraction round trip recovered identical bytes, including a Unicode filename. The actual Mac screenshot was captured and visually reviewed, confirming the interface and **AHAS** menu identity: [screenshot](docs/screenshots/native-mac.png).
+
+An initial pre-release embedding check caught an ASCII-default locale issue. The embedded runtime now explicitly preinitializes UTF-8 mode, the HTML loader specifies UTF-8, and the native smoke includes a Unicode-path case. That failing pre-release artifact was not published as 2.0.1; the successful run above is the final release.
+
+Published native assets/checksums: https://github.com/ahasnimsandu/ahas-compressor/releases/tag/v2.0.1
+Exact release asset hashes/provenance: `macos/BUILD-RECEIPT.json`. Manual native file-dialog/full-GUI coverage, actual video transcoding/all-codec compatibility, macOS 11 compatibility, and end-user Gatekeeper/quarantine approval remain unclaimed. The app is not Developer ID signed or notarized.

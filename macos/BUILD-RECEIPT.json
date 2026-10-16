@@ -1,45 +1,40 @@
 {
-  "version": "2.0.0",
+  "version": "2.0.1",
   "creator": "Made by Ahas Nimsandu",
+  "release_url": "https://github.com/ahasnimsandu/ahas-compressor/releases/tag/v2.0.1",
+  "release_commit": "9ccbf6c86217e59183d38aa3ca98991e932137da",
+  "build_run": "https://github.com/ahasnimsandu/ahas-compressor/actions/runs/38961746861",
   "assets": [
     {
-      "file": "AHAS-2.0-AppleSilicon.dmg",
-      "bytes": 25500562,
-      "sha256": "f7b3f3eb88a86a693756775691f6b5a0dfd8b0e6f27ee0449754d6fdd97c6d8a"
+      "file": "AHAS-2.0.1-AppleSilicon.dmg",
+      "bytes": 29403651,
+      "sha256": "37fbabd2d0595a2bc82aa5451d38facffa130421e548fe0472da70d26ca2ad78"
     },
     {
-      "file": "AHAS-2.0-AppleSilicon-App.zip",
-      "bytes": 25951113,
-      "sha256": "aa2027d1ac7e61744064570f2fd6ad83554afabc824ec5b85c4c394792f08e2b"
+      "file": "AHAS-2.0.1-AppleSilicon-App.zip",
+      "bytes": 26030518,
+      "sha256": "a7d5c714b4f4a696e2c967a43d90a2ba95d81dd35bda6299f5581d33c5a09b28"
     }
   ],
-  "archive_format": "AHAS v2 solid XZ, whole-file deduplication, zero-run elision",
-  "tests": {
-    "discovered": 61,
-    "passed": 59,
-    "skipped": 2,
-    "skipped_reason": "Real macOS sips and avconvert tests; not executed on Linux",
-    "browser": "Branded UI, mode choices/consent, .ahas create-verify-extract, exact byte comparison, mobile layout, no JS page errors"
+  "build_platform": "GitHub macos-14 Apple Silicon runner; native Apple clang/codesign/hdiutil",
+  "checks": {
+    "macos_tests": "61 passed, including real sips conversion and avconvert preset enumeration",
+    "apple_codesign": "--verify --deep --strict: valid on disk, designated requirement satisfied (ad-hoc only)",
+    "hdiutil": "native DMG checksum/partition verification passed",
+    "runtime": "bundled arm64 CPython imports passed",
+    "native_launch": "Embedded interpreter app launched; loopback backend healthy; branded UI captured and visually reviewed; AHAS app/menu identity confirmed",
+    "roundtrip": "Packaged app .ahas creation, verification and extraction; byte-identical recovery including Unicode filename",
+    "local_downloads": "Native GitHub release assets matched published SHA256SUMS"
   },
-  "packaging": {
-    "udif_crc32": "0x29bed964",
-    "independent_dmg_decode": "Exact HFS+ partition SHA256 match",
-    "hfs_sha256": "1d3e21400a7acd3ab142131b465c8fd0b2886c43053dcec2fd36a1cd3da2182b",
-    "fsck": "appears to be OK",
-    "bundle_integrity": "PASS: 1682 sealed resource files, 9 sealed symlinks, 11 arm64 Mach-O signatures (page hashes), Info.plist and CodeResources seals.",
-    "links": 10,
-    "zip_payload": "All file bytes compared; executable bits and 9 runtime symlinks checked"
-  },
-  "signing": "Ad-hoc only; not Developer ID signed or notarized",
-  "not_tested": [
-    "Native arm64 Mac execution and GUI",
-    "DMG mounting on an actual Mac",
-    "Actual image/video conversion on macOS",
-    "Apple codesign/Gatekeeper acceptance",
-    "Minimum macOS version compatibility",
-    "GitHub Actions workflows have not run here"
+  "signing": "Ad-hoc only. NOT Developer ID signed or Apple notarized.",
+  "not_claimed": [
+    "Gatekeeper/quarantine approval on an end-user Mac",
+    "Minimum macOS 11 compatibility tested",
+    "Native file dialog automation or full GUI coverage",
+    "Actual video transcode test or all-codec compatibility",
+    "50 GB input benchmark or arbitrary 1000:1 compression"
   ],
-  "runtime": {
+  "runtime_provenance": {
     "runtime": "CPython 3.13.16, python-build-standalone 20261013",
     "architecture": "aarch64-apple-darwin",
     "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20261013/cpython-3.13.16%2B20261013-aarch64-apple-darwin-install_only_stripped.tar.gz",

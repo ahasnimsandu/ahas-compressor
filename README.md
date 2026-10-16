@@ -2,6 +2,8 @@
 
 ### Space, thoughtfully reclaimed.
 
+**Current native release: [v2.0.1](https://github.com/ahasnimsandu/ahas-compressor/releases/tag/v2.0.1).** Built and launched on an Apple Silicon macOS runner; 61 tests, packaged-app restoration smoke, Apple ad-hoc signature checks, and DMG verification passed. [Actual Mac screenshot](docs/screenshots/native-mac.png).
+
 **Made by Ahas Nimsandu** · Apple Silicon macOS app · MIT-licensed application source
 
 [Repository](https://github.com/ahasnimsandu/ahas-compressor) · [Releases](https://github.com/ahasnimsandu/ahas-compressor/releases) · [Build status](https://github.com/ahasnimsandu/ahas-compressor/actions)
