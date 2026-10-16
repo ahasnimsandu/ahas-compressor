@@ -1,8 +1,8 @@
-# AHAS 2.0.1 — Tests and benchmarks
+# AHAS 2.0.2 — Tests and benchmarks
 
 ## Native macOS release
 
-[Release build](https://github.com/ahasnimsandu/ahas-compressor/actions/runs/38961746861) · [Downloads and checksums](https://github.com/ahasnimsandu/ahas-compressor/releases/tag/v2.0.1)
+[Release build](https://github.com/ahasnimsandu/ahas-compressor/actions/runs/38963843920) · [Downloads and checksums](https://github.com/ahasnimsandu/ahas-compressor/releases/tag/v2.0.2)
 
 The release was built on an Apple Silicon macOS runner.
 
@@ -16,7 +16,7 @@ The release was built on an Apple Silicon macOS runner.
 
 ## Cross-platform and browser tests
 
-[Cross-platform CI](https://github.com/ahasnimsandu/ahas-compressor/actions/runs/38960175273) passed on Linux and macOS with Python 3.11 and 3.13.
+[Cross-platform CI](https://github.com/ahasnimsandu/ahas-compressor/actions/runs/38963843810) passed on Linux and macOS with Python 3.11 and 3.13.
 
 The Linux Python 3.13.16 run discovered 61 tests: 59 passed and two macOS-only tests were skipped. Coverage includes archive framing, round trips, duplicates, zero runs, corruption, path safety, cancellation, legacy `.cla` reading, media orchestration, HTTP authentication, and lossy-consent checks.
 

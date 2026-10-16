@@ -27,7 +27,7 @@ Download the DMG or app ZIP from the [latest release](https://github.com/ahasnim
 
 The app bundles its own arm64 Python runtime: **no Python, pip, Node, account, or internet connection is needed to run it**. Its interface is hosted in a native AppKit/WebKit window, not an external browser. Logs: `~/Library/Logs/AHAS/app.log`.
 
-**Build target:** Apple Silicon, macOS 11+. **Release status:** experimental, ad-hoc signed only; **not Developer ID signed or notarized**. The published v2.0.1 DMG and ZIP were built and launched on an actual Apple Silicon macOS runner. All 61 tests, Apple ad-hoc code-signature checks, bundled-runtime imports, DMG verification, and a packaged-app archive/restore round trip passed. Full GUI/file-dialog, all-codec video, minimum-OS, and end-user Gatekeeper testing remain separate. See [validation](VALIDATION.md).
+**Build target:** Apple Silicon, macOS 11+. **Release status:** experimental, ad-hoc signed only; **not Developer ID signed or notarized**. The published v2.0.2 DMG and ZIP were built and launched on an actual Apple Silicon macOS runner. All 61 tests, Apple ad-hoc code-signature checks, bundled-runtime imports, DMG verification, and a packaged-app archive/restore round trip passed. Full GUI/file-dialog, all-codec video, minimum-OS, and end-user Gatekeeper testing remain separate. See [validation](VALIDATION.md).
 
 If macOS blocks or labels a download “damaged,” do not assume the file is safe or disable security globally. Check its checksum, use the native macOS build workflow, and investigate Apple's `codesign`/Gatekeeper output. A regular **Privacy & Security → Open Anyway** approval may be offered for a trusted unnotarized app, but it does not repair an invalid signature or corrupted disk image.
 

@@ -1,19 +1,19 @@
 {
-  "version": "2.0.1",
+  "version": "2.0.2",
   "creator": "Made by Ahas Nimsandu",
-  "release_url": "https://github.com/ahasnimsandu/ahas-compressor/releases/tag/v2.0.1",
-  "release_commit": "9ccbf6c86217e59183d38aa3ca98991e932137da",
-  "build_run": "https://github.com/ahasnimsandu/ahas-compressor/actions/runs/38961746861",
+  "release_url": "https://github.com/ahasnimsandu/ahas-compressor/releases/tag/v2.0.2",
+  "release_commit": "feaa4ffe7d76545b5bf15e06f6d9dbec81d6053d",
+  "build_run": "https://github.com/ahasnimsandu/ahas-compressor/actions/runs/38963843920",
   "assets": [
     {
-      "file": "AHAS-2.0.1-AppleSilicon.dmg",
-      "bytes": 29403651,
-      "sha256": "37fbabd2d0595a2bc82aa5451d38facffa130421e548fe0472da70d26ca2ad78"
+      "file": "AHAS-2.0.2-AppleSilicon.dmg",
+      "bytes": 29407294,
+      "sha256": "ce2fc51deabe2872feaf5e654102930fa5aaaec06fa17fe91137e521c30d7871"
     },
     {
-      "file": "AHAS-2.0.1-AppleSilicon-App.zip",
-      "bytes": 26030518,
-      "sha256": "a7d5c714b4f4a696e2c967a43d90a2ba95d81dd35bda6299f5581d33c5a09b28"
+      "file": "AHAS-2.0.2-AppleSilicon-App.zip",
+      "bytes": 26029155,
+      "sha256": "1e66ae1889d21511c6370a491bdbb5e19ffee1749cfc734f9727afc429079f6a"
     }
   ],
   "build_platform": "GitHub macos-14 Apple Silicon runner; native Apple clang/codesign/hdiutil",

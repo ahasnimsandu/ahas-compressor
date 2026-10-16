@@ -8,7 +8,7 @@ const root=path.resolve(__dirname,'..');
  fs.writeFileSync(path.join(source,'note.txt'),'AHAS test content\n'.repeat(20000));
  fs.copyFileSync(path.join(source,'note.txt'),path.join(source,'copy.txt'));
  const archive=path.join(temp,'Example.ahas'),restored=path.join(temp,'Restored');
- const child=spawn(process.env.PYTHON||'python3',['-m','compactlocal','--preview','--no-browser','--port','0'],{cwd:root});
+ const child=spawn(process.env.PYTHON||'python3',['-m','compactlocal','--no-browser','--port','0'],{cwd:root});
  let browser;
  try{
   const url=await new Promise((resolve,reject)=>{let log='';const timer=setTimeout(()=>reject(Error('Server startup timeout')),15000);child.stdout.on('data',b=>{log+=b;const match=log.match(/http:\/\/127\.0\.0\.1:\d+/);if(match){clearTimeout(timer);resolve(match[0])}});child.on('exit',n=>{clearTimeout(timer);reject(Error('Server exited '+n))})});
