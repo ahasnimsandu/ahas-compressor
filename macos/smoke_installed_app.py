@@ -32,12 +32,14 @@ def main():
             deadline=time.monotonic()+45;url=None
             while time.monotonic()<deadline:
                 if p.poll() is not None:raise RuntimeError('Native app exited during launch: '+str(p.returncode))
-                result=subprocess.run(['/usr/sbin/lsof','-a','-p',str(p.pid),'-iTCP','-sTCP:LISTEN','-Fn'],capture_output=True,text=True)
+                result=subprocess.run(['/usr/sbin/lsof','-nP','-a','-p',str(p.pid),'-iTCP','-sTCP:LISTEN','-Fn'],capture_output=True,text=True)
                 match=re.search(r'n127\.0\.0\.1:(\d+)',result.stdout)
                 if match:
                     url='http://127.0.0.1:'+match[1];break
                 time.sleep(.2)
-            if not url:raise RuntimeError('Packaged native app did not open its loopback backend.')
+            if not url:
+                print('Last socket listing:',result.stdout,result.stderr)
+                raise RuntimeError('Packaged native app did not open its loopback backend.')
             time.sleep(4)
             if p.poll() is not None:raise RuntimeError('Native app exited after backend startup.')
             with urllib.request.urlopen(url,timeout=10) as response:html=response.read().decode()
@@ -68,6 +70,9 @@ def main():
             print('PASS: downloaded native app remains running; branded backend; bundled-runtime .ahas create/verify/extract; exact restored bytes.')
             print('This does not automate native file dialogs, Gatekeeper/quarantine approvals, or all GUI/media behavior.')
         except Exception:
+            if screenshot:
+                screenshot.parent.mkdir(parents=True,exist_ok=True)
+                subprocess.run(['/usr/sbin/screencapture','-x',str(screenshot)],capture_output=True,timeout=15)
             if log.exists():
                 print('App log from this launch:',log.read_bytes()[prior:].decode(errors='replace')[-6000:])
             raise
